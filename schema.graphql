@@ -9,7 +9,6 @@ type Deposit @entity {
   user: User!
   amount: BigInt!
   amountFriendly: BigInt!
-  depositCount: BigInt!
 }
 
 type Withdrawl @entity {
@@ -19,7 +18,6 @@ type Withdrawl @entity {
   user: User!
   amount: BigInt!
   amountFriendly: BigInt!
-  withdrawlCount: BigInt!
 }
 
 type User @entity {

@@ -10,6 +10,7 @@ async function checkGetUser(user: string): Promise<User> {
       totalDeposits: BigInt(0),
       totalWithdrawls: BigInt(0),
     });
+    await userRecord.save();
   }
   return userRecord;
 }
@@ -17,22 +18,25 @@ async function checkGetUser(user: string): Promise<User> {
 export async function handleDeposit(deposit: TokenDepositedLog): Promise<void> {
   logger.info(`New deposit transaction log at block ${deposit.blockNumber}`);
   const userId = deposit.args[2].toLowerCase();
+  logger.info(`1`);
 
   const userRecord = await checkGetUser(userId);
+  logger.info(`2`);
 
   const depositRecord = Deposit.create({
-    id: `${deposit.transactionHash}-${deposit.logIndex}`,
+    id: deposit.args[4].toString(),
     rootToken: deposit.args[0],
     childToken: deposit.args[1],
     userId,
     amount: deposit.args[3].toBigInt(),
     amountFriendly: deposit.args[3].toBigInt(),
-    depositCount: deposit.args[4].toBigInt(),
   });
   await depositRecord.save();
+  logger.info(`3`);
 
   userRecord.totalDeposits += depositRecord.amount;
   await userRecord.save();
+  logger.info(`4`);
 }
 
 export async function handleWithdrawl(
@@ -46,13 +50,12 @@ export async function handleWithdrawl(
   const userRecord = await checkGetUser(userId);
 
   const withdrawlRecord = Withdrawl.create({
-    id: `${withdrawl.transactionHash}-${withdrawl.logIndex}`,
+    id: withdrawl.args[4].toString(),
     rootToken: withdrawl.args[0],
     childToken: withdrawl.args[1],
     userId,
     amount: withdrawl.args[3].toBigInt(),
     amountFriendly: withdrawl.args[3].toBigInt(),
-    withdrawlCount: withdrawl.args[4].toBigInt(),
   });
   await withdrawlRecord.save();
 
