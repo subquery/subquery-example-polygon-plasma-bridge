@@ -34,7 +34,7 @@ dataSources:
     options:
       # Must be a key of assets
       abi: plasma
-      address: "0xD9c7C4ED4B66858301D0cb28Cc88bf655Fe34861" # Plasma contract
+      address: "0xd9c7c4ed4b66858301d0cb28cc88bf655fe34861" # Plasma contract
     assets:
       plasma:
         file: "plasma.abi.json"

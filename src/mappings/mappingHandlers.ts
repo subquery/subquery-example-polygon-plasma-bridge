@@ -1,6 +1,8 @@
 import { Deposit, User, Withdrawl } from "../types";
-import { TokenWithdrawnLog } from "../types/abi-interfaces/PlasmaAbi";
-import { TokenDepositedLog } from "../types/abi-interfaces/PlasmaAbi";
+import {
+  TokenWithdrawnLog,
+  TokenDepositedLog,
+} from "../types/abi-interfaces/PlasmaAbi";
 
 async function checkGetUser(user: string): Promise<User> {
   let userRecord = await User.get(user.toLowerCase());

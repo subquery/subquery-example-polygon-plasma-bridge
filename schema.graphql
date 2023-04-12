@@ -3,19 +3,19 @@
 # https://academy.subquery.network/build/graphql.html#indexing-by-non-primary-key-field
 
 type Deposit @entity {
-  id: ID! # Transaction hash and log index
+  id: ID! # Deposit Count Index
   rootToken: String!
   childToken: String!
-  user: User!
+  user: User! # Foreign Key
   amount: BigInt!
   amountFriendly: BigInt!
 }
 
 type Withdrawl @entity {
-  id: ID! # Transaction hash and log index
+  id: ID! # Withdrawl Count Index
   rootToken: String!
   childToken: String!
-  user: User!
+  user: User! # Foreign Key
   amount: BigInt!
   amountFriendly: BigInt!
 }
