@@ -30,7 +30,7 @@ network:
 
 dataSources:
   - kind: ethereum/Runtime # We use ethereum runtime since Polygon is a layer-2 that is compatible
-    startBlock: 849 # This is the block that the contract was deployed on https://polygonscan.com/tx/0x88e3ab569326b52e9dd8a5f72545d89d8426bbf536f3bfaf31e023fb459ca373
+    startBlock: 8323392
     options:
       # Must be a key of assets
       abi: plasma

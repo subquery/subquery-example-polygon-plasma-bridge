@@ -20,10 +20,8 @@ async function checkGetUser(user: string): Promise<User> {
 export async function handleDeposit(deposit: TokenDepositedLog): Promise<void> {
   logger.info(`New deposit transaction log at block ${deposit.blockNumber}`);
   const userId = deposit.args[2].toLowerCase();
-  logger.info(`1`);
 
   const userRecord = await checkGetUser(userId);
-  logger.info(`2`);
 
   const depositRecord = Deposit.create({
     id: deposit.args[4].toString(),
@@ -34,11 +32,9 @@ export async function handleDeposit(deposit: TokenDepositedLog): Promise<void> {
     amountFriendly: deposit.args[3].toBigInt(),
   });
   await depositRecord.save();
-  logger.info(`3`);
 
   userRecord.totalDeposits += depositRecord.amount;
   await userRecord.save();
-  logger.info(`4`);
 }
 
 export async function handleWithdrawl(
