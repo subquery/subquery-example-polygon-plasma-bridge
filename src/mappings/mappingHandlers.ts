@@ -57,6 +57,6 @@ export async function handleWithdrawl(
   });
   await withdrawlRecord.save();
 
-  userRecord.totalDeposits += withdrawlRecord.amount;
+  userRecord.totalWithdrawls += withdrawlRecord.amount;
   await userRecord.save();
 }
